@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component managing screen transitions with optimized state management for seamless, instant progression through all 7 birthday screens without any audio functionality.",
+  "frontend/src/pages/LoadingScreen.tsx": "Loading screen with animated progress bar that completes in exactly 3 seconds and automatically transitions to IntroScreen, featuring premium gradient effects and enhanced visual depth.",
+  "frontend/src/pages/IntroScreen.tsx": "Introduction screen displaying birthday message for Aradhya with start button, featuring premium backdrop blur, enhanced shadows, and polished visual styling.",
+  "frontend/src/pages/CakeScreen.tsx": "Birthday cake display screen with confetti animation and premium visual effects including enhanced shadows, gradient lighting, and polished styling without any music functionality.",
+  "frontend/src/pages/BalloonScreen.tsx": "Interactive balloon popping screen with 4 clickable balloons that play sound effects and auto-advance when all popped, featuring premium visual depth and enhanced styling.",
+  "frontend/src/pages/MessageScreen1.tsx": "First message card screen with tap-to-reveal birthday wish text, bunting decoration, and premium card animations with enhanced shadows and lighting effects.",
+  "frontend/src/pages/MessageScreen2.tsx": "Second message card screen with tap-to-reveal \"Happy Birthday to you\" message, decorative balloons, and premium visual styling with enhanced depth.",
+  "frontend/src/pages/FinalScreen.tsx": "Final celebration screen with floating hearts animation, completion message, poetic birthday message with elegant fade-in animation, restart option, and premium visual presentation with enhanced shadows and lighting.",
+  "frontend/src/components/Balloon.tsx": "Reusable balloon component with SVG rendering, pop animation, and click interaction handling.",
+  "frontend/src/components/Confetti.tsx": "Confetti animation component that generates and animates 50 colorful falling pieces across the screen.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend state management including getState, nextScreen, and popBalloon mutations.",
+  "frontend/src/index.css": "Global styles with OKLCH color system for pink/purple birthday theme, featuring premium custom animations including smooth transitions, gradient effects, and enhanced visual depth utilities.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended birthday theme colors, premium shadow utilities, and enhanced visual effects for polished, high-tech presentation."
+}

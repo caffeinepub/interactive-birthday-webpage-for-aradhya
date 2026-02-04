@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Birthday theme colors in OKLCH */
+    --birthday-pink: oklch(0.75 0.15 350);
+    --birthday-purple: oklch(0.65 0.18 300);
+    --birthday-light-pink: oklch(0.92 0.08 350);
+    --birthday-light-purple: oklch(0.88 0.10 300);
+    
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.15 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0 0);
+    --primary: oklch(0.75 0.15 350);
+    --primary-foreground: oklch(0.98 0 0);
+    --secondary: oklch(0.65 0.18 300);
+    --secondary-foreground: oklch(0.98 0 0);
+    --muted: oklch(0.96 0.01 286);
+    --muted-foreground: oklch(0.45 0.01 286);
+    --accent: oklch(0.92 0.08 350);
+    --accent-foreground: oklch(0.15 0 0);
+    --destructive: oklch(0.58 0.22 25);
+    --destructive-foreground: oklch(0.98 0 0);
+    --border: oklch(0.90 0.01 286);
+    --input: oklch(0.90 0.01 286);
+    --ring: oklch(0.75 0.15 350);
+    --radius: 0.5rem;
+    --chart-1: oklch(0.75 0.15 350);
+    --chart-2: oklch(0.65 0.18 300);
+    --chart-3: oklch(0.70 0.12 30);
+    --chart-4: oklch(0.68 0.14 200);
+    --chart-5: oklch(0.72 0.10 150);
+  }
+
+  .dark {
+    --background: oklch(0.15 0.01 286);
+    --foreground: oklch(0.98 0 0);
+    --card: oklch(0.15 0.01 286);
+    --card-foreground: oklch(0.98 0 0);
+    --popover: oklch(0.15 0.01 286);
+    --popover-foreground: oklch(0.98 0 0);
+    --primary: oklch(0.75 0.15 350);
+    --primary-foreground: oklch(0.15 0 0);
+    --secondary: oklch(0.65 0.18 300);
+    --secondary-foreground: oklch(0.98 0 0);
+    --muted: oklch(0.25 0.01 286);
+    --muted-foreground: oklch(0.65 0.01 286);
+    --accent: oklch(0.25 0.01 286);
+    --accent-foreground: oklch(0.98 0 0);
+    --destructive: oklch(0.58 0.22 25);
+    --destructive-foreground: oklch(0.98 0 0);
+    --border: oklch(0.25 0.01 286);
+    --input: oklch(0.25 0.01 286);
+    --ring: oklch(0.75 0.15 350);
+    --chart-1: oklch(0.75 0.15 350);
+    --chart-2: oklch(0.65 0.18 300);
+    --chart-3: oklch(0.70 0.12 30);
+    --chart-4: oklch(0.68 0.14 200);
+    --chart-5: oklch(0.72 0.10 150);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', 'Comic Sans MS', cursive, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-birthday-pink {
+    color: var(--birthday-pink);
+  }
+  .text-birthday-purple {
+    color: var(--birthday-purple);
+  }
+  .bg-birthday-pink {
+    background-color: var(--birthday-pink);
+  }
+  .bg-birthday-purple {
+    background-color: var(--birthday-purple);
+  }
+  .border-birthday-pink {
+    border-color: var(--birthday-pink);
+  }
+  .border-birthday-purple {
+    border-color: var(--birthday-purple);
+  }
+  
+  /* Premium gradient utilities */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
+
+/* Premium custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pop {
+  animation: pop 0.3s ease-out forwards;
+}
+
+.animate-confetti-fall {
+  animation: confetti-fall linear forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Enhanced smooth transitions with premium timing */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.duration-400 {
+  transition-duration: 400ms;
+}
+
+/* Premium shadow effects */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+.drop-shadow-2xl {
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
+}
