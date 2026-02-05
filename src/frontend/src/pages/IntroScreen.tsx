@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
 import { Gift } from 'lucide-react';
+import PrimaryCtaButton from '@/components/PrimaryCtaButton';
 
 interface IntroScreenProps {
   onNext: () => void;
@@ -20,7 +20,7 @@ export default function IntroScreen({ onNext }: IntroScreenProps) {
         </div>
         
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-birthday-purple leading-tight drop-shadow-md">
+          <h1 className="text-4xl md:text-5xl font-display text-birthday-purple leading-tight drop-shadow-md">
             A Cutiepie was born today, 15 years ago!
           </h1>
           <p className="text-2xl md:text-3xl font-semibold text-birthday-pink drop-shadow-sm">
@@ -31,14 +31,14 @@ export default function IntroScreen({ onNext }: IntroScreenProps) {
           </p>
         </div>
 
-        <Button 
+        <PrimaryCtaButton 
           onClick={onNext}
-          size="lg"
-          className="bg-birthday-pink hover:bg-birthday-pink/90 text-white text-xl px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-white/30"
+          variant="pink"
+          className="text-xl px-8 py-6"
         >
           <Gift className="mr-2 h-6 w-6" />
           Start the surprise
-        </Button>
+        </PrimaryCtaButton>
       </div>
     </div>
   );

@@ -1,0 +1,38 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T14:55:47.218Z",
+  "summary": "Diff implements global typography (Quicksand/Pacifico) with font preloading to avoid flash, defines birthday theme CSS variables, introduces a PrimaryCtaButton wrapper to ensure CTA visibility, and restores/implements royal gold framed photo styling via global .royal-frame styles and use of FramedPhoto on MessageScreen2. Some additional visual/behavioral enhancements appear beyond the requested scope (e.g., extra decorative effects and content/animation changes on non-target areas).",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Added/modified celebratory floating hearts animation and delayed poetic message reveal behavior on FinalScreen, which was not requested (request focused on typography, button visibility, royal frame, and CSS variables).",
+      "reason": "FinalScreen changes include new heart spawning logic and additional animated/message behaviors not tied to the stated requirements.",
+      "evidence": [
+        "frontend/src/pages/FinalScreen.tsx"
+      ]
+    },
+    {
+      "description": "Added extensive extra decorative sparkle/glow visuals on HandwrittenNoteScreen beyond fixing typography/buttons/theme variables.",
+      "reason": "Diff shows new decorative elements and premium frame effects unrelated to the specified fixes.",
+      "evidence": [
+        "frontend/src/pages/HandwrittenNoteScreen.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/PrimaryCtaButton.tsx",
+    "frontend/src/index.css",
+    "frontend/src/pages/CakeScreen.tsx",
+    "frontend/src/pages/FinalScreen.tsx",
+    "frontend/src/pages/HandwrittenNoteScreen.tsx",
+    "frontend/src/pages/IntroScreen.tsx",
+    "frontend/src/pages/MessageScreen1.tsx",
+    "frontend/src/pages/MessageScreen2.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

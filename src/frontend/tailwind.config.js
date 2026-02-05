@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Quicksand', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        display: ['Pacifico', 'cursive'],
+      },
       colors: {
         'birthday-pink': 'var(--birthday-pink)',
         'birthday-purple': 'var(--birthday-purple)',

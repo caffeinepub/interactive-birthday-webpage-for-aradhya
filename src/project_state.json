@@ -1,0 +1,374 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 51,
+  "summary": "Interactive Birthday Webpage for Aradhya: a React + Tailwind single-page, multi-screen birthday experience (loading → intro → cake/confetti → balloon popping → message cards with framed photo → pre-final loading transition → handwritten-note image screen → final celebration) with polished animations and themed assets. The repo also includes an Internet Computer (Motoko) backend canister and React Query/Internet Identity hooks intended to persist and synchronize app state (current screen and popped balloons) across sessions/identities, although the current UI screen flow primarily uses local React state.",
+  "existing_features": [
+    {
+      "id": "IF-2",
+      "title": "Timed loading screen with progress bar",
+      "synonyms": [
+        "splash loader",
+        "progress intro"
+      ],
+      "description": "Shows an animated loading screen with a progress bar that increments over exactly 3 seconds and then automatically triggers navigation to the next screen.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Intro screen with themed assets and start CTA",
+      "synonyms": [
+        "welcome screen"
+      ],
+      "description": "Displays an introduction message, a themed image asset, and a start button that advances to the next screen.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Cake celebration screen with confetti",
+      "synonyms": [
+        "cake screen",
+        "celebration screen"
+      ],
+      "description": "Renders a birthday cake image with bounce/pulse effects and triggers a confetti overlay on mount; provides a CTA button to proceed to the balloon interaction.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Interactive balloon popping screen with auto-advance",
+      "synonyms": [
+        "balloon mini-game",
+        "balloon interaction"
+      ],
+      "description": "Shows 4 balloons that can be popped; plays a pop sound on click, tracks popped count, and automatically advances after all balloons are popped (with a 1.5s delay).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Reusable SVG Balloon component with animations",
+      "synonyms": [
+        "balloon UI component"
+      ],
+      "description": "Provides a Balloon component that renders an SVG balloon with hover scale and float/pop animations; prevents re-pop while animating and displays a '💥' effect when popped.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Message card screens with tap-to-reveal interaction",
+      "synonyms": [
+        "message reveal screens",
+        "tap-to-open cards"
+      ],
+      "description": "Implements two message screens where the card content is hidden until clicked, then reveals the message and enables a Next button to proceed.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Final celebration screen with animated hearts and restart",
+      "synonyms": [
+        "end screen",
+        "finale screen"
+      ],
+      "description": "Displays a final birthday message with floating heart animations and a delayed fade-in poetic message; includes a restart button to replay the experience.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "Confetti overlay animation component",
+      "synonyms": [
+        "confetti effect"
+      ],
+      "description": "Generates 50 confetti pieces with randomized colors, delays, durations, and positions, animating them falling across the screen using CSS keyframes.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Tailwind + custom CSS theme and animation utilities",
+      "synonyms": [
+        "design system",
+        "birthday theme styling"
+      ],
+      "description": "Defines a birthday-themed color palette via CSS variables and Tailwind extensions, plus custom keyframe animations and utility classes (float, pop, confetti fall, pulse, fade-in, enhanced shadows).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-11",
+      "title": "Motoko backend canister for app state (screen + balloons)",
+      "synonyms": [
+        "ICP backend",
+        "state canister"
+      ],
+      "description": "Implements an Internet Computer actor with an AppState record (screen: Nat, balloonsPopped: [Bool]) and methods to set the screen (nextScreen), pop a balloon (popBalloon), and query current state (getState), including validation and traps for invalid inputs.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-12",
+      "title": "React Query hooks for backend state and mutations",
+      "synonyms": [
+        "backend API hooks",
+        "state synchronization hooks"
+      ],
+      "description": "Provides useGetState (query), useNextScreen (mutation), and usePopBalloon (mutation) that call the backend actor and invalidate the cached app state after successful mutations.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-13",
+      "title": "Internet Identity authentication context",
+      "synonyms": [
+        "II auth",
+        "auth provider"
+      ],
+      "description": "Implements an InternetIdentityProvider with AuthClient initialization, identity restoration from storage, login/logout functions, and derived status flags for UI consumption.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-14",
+      "title": "Identity-aware ICP actor creation and caching",
+      "synonyms": [
+        "actor hook",
+        "agent/actor setup"
+      ],
+      "description": "Implements useActor to create either an anonymous actor or an authenticated actor (with identity), cache it via React Query keyed by principal, and invalidate/refetch dependent queries when the actor changes.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-15",
+      "title": "shadcn/ui component library integrated",
+      "synonyms": [
+        "shadcn ui",
+        "UI component primitives"
+      ],
+      "description": "Project now includes a shadcn/ui component set (e.g., button, dialog, tabs, toast/sonner, etc.) and associated frontend tooling/config (eslint rules, utils) to standardize UI primitives across screens.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-16",
+      "title": "Local storage utility for client-side persistence",
+      "synonyms": [
+        "StorageClient",
+        "local persistence"
+      ],
+      "description": "Adds a frontend StorageClient utility to persist and restore lightweight client-side state via browser storage (used as infrastructure for remembering UI progress/state across reloads).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-17",
+      "title": "Build template scaffolding for ICP + React app (deploy scripts and configuration)",
+      "synonyms": [
+        "build-template",
+        "deployment scaffold",
+        "ICP build/deploy template"
+      ],
+      "description": "Adds a build-template directory containing Dockerfile, deploy scripts, pnpm workspace/package manifests, ICP canister yamls, and related tooling intended to standardize building and deploying the React frontend + Motoko backend.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-18",
+      "title": "Image processing utility scripts (prune/resize) in build template",
+      "synonyms": [
+        "asset pipeline scripts",
+        "image pruning",
+        "image resizing"
+      ],
+      "description": "Includes Node scripts in the build template to prune unused images and resize images as part of the asset/build workflow.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-19",
+      "title": "Expanded multi-screen birthday flow including pre-final loading + handwritten note screen",
+      "synonyms": [
+        "extended screen sequence",
+        "handwritten-note flow"
+      ],
+      "description": "Extends the original screen-based flow to include a short pre-final loading transition screen and a dedicated Handwritten Note screen placed after MessageScreen2 and before the Final celebration screen.",
+      "reqIds": [
+        "AR-13",
+        "AR-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-20",
+      "title": "Handwritten note image screen (decorated)",
+      "synonyms": [
+        "handwritten wish screen",
+        "note image display"
+      ],
+      "description": "Adds a dedicated screen to display the uploaded handwritten wish note exactly as an image (no text extraction/retyping), styled/decorated to fit the birthday theme, and inserted into the flow just before the final celebration.",
+      "reqIds": [
+        "AR-11",
+        "AR-12",
+        "AR-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-21",
+      "title": "Pre-final short loading transition screen",
+      "synonyms": [
+        "pre-final loader",
+        "transition splash"
+      ],
+      "description": "Adds a brief 2–3 second loading/transition screen before the handwritten-note image screen to create a smoother pacing before the finale sequence.",
+      "reqIds": [
+        "AR-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-22",
+      "title": "Golden framed photo component updated for message screens",
+      "synonyms": [
+        "royal gold frame",
+        "premium framed photo"
+      ],
+      "description": "Updates the framed photo presentation used on MessageScreen1 and MessageScreen2 to a royal/elegant gold frame aesthetic with responsive, centered, non-stretched cropping and premium polish effects (spotlight glow, stronger shadow, smooth fade-in on load, subtle sparkles).",
+      "reqIds": [
+        "AR-2",
+        "AR-3",
+        "AR-4",
+        "AR-7",
+        "AR-8",
+        "AR-9",
+        "AR-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-23",
+      "title": "Background music and player removed",
+      "synonyms": [
+        "no music",
+        "remove audio"
+      ],
+      "description": "Removes all background music/autoplay/gesture logic and any music player UI so the experience runs with the original smooth screen flow without audio-related interaction requirements.",
+      "reqIds": [
+        "AR-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-24",
+      "title": "Improved Handwritten Note screen with stable display and mobile-friendly zoom/pan",
+      "synonyms": [
+        "handwritten note fix",
+        "zoomable note image",
+        "pan/zoom image viewer"
+      ],
+      "description": "Updates the Handwritten Note screen so the note image stays on-screen (no unintended timed auto-advance) and renders reliably on mobile using a dedicated zoom/pan image component + hook for better responsiveness and interaction.",
+      "reqIds": [
+        "AR-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-the-earlier-previous-site-typography-across-all-screens-and-ensure-it-is-applied-consistently-from-the-first-paint-no-brief-flash-of-default-system-font",
+      "title": "Restore the earlier (previous) site typography across all screens and ensure it is applied consistently from the first paint (no brief flash of default/system font).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-invisible-navigation-button-issue-so-all-primary-progression-buttons-e-g-start-the-surprise-pop-the-balloons-next-are-visually-visible-and-clearly-distinguishable-on-their-backgrounds-while-remaining-clickable",
+      "title": "Fix the invisible navigation button issue so all primary progression buttons (e.g., “Start the surprise”, “Pop the Balloons →”, “Next”) are visually visible and clearly distinguishable on their backgrounds while remaining clickable.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-the-royal-golden-framed-photo-presentation-on-messagescreen2-so-the-photo-appears-with-the-premium-royal-gold-frame-styling-as-before-matching-the-expected-royal-golden-frame-look",
+      "title": "Restore the royal golden framed photo presentation on MessageScreen2 so the photo appears with the premium royal-gold frame styling as before (matching the expected “royal golden frame” look).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-birthday-theme-css-variables-used-by-tailwind-utility-classes-e-g-birthday-pink-birthday-purple-etc-are-defined-in-the-active-global-stylesheet-so-theme-based-classes-bg-birthday-text-birthday-render-correctly-on-every-screen",
+      "title": "Ensure the birthday theme CSS variables used by Tailwind utility classes (e.g., --birthday-pink, --birthday-purple, etc.) are defined in the active global stylesheet so theme-based classes (bg-birthday-*, text-birthday-*) render correctly on every screen.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Allow user to upload a photo, restyle it in an attractive frame, and add it into the birthday webpage (placement likely on message screens or another appropriate section).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Polish the overall UI to feel high-profile/professional/high-tech (premium look) while keeping the existing theme and sequence consistent with the uploaded reference.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Revert the site typography to the earlier font style the user preferred and ensure it loads consistently (avoid initial default-font flash).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Restore the royal golden framed photo on MessageScreen2 (it appears removed in the user's second screenshot).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Fix the invisible Next/continue button (clickable but not visible) so navigation controls are visible across screens.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "React SPA with screen-based flow controlled via local component state (no router), using fade transitions between screens.",
+    "UI styling built with TailwindCSS plus custom CSS variables (birthday theme) and custom keyframe animations (float, pop, confetti, fade-in, etc.).",
+    "React Query (@tanstack/react-query) used for data fetching/mutations and for caching an ICP backend actor instance keyed by user identity.",
+    "Internet Identity integration implemented as a React Context Provider wrapping the app; supports login/logout and identity restoration on reload.",
+    "Backend is a Motoko actor exposing query (getState) and shared update calls (nextScreen, popBalloon) with input validation via traps.",
+    "UI primitives extended via shadcn/ui component set with shared utils and ESLint rules to enforce project conventions (e.g., Internet Identity provider usage, query-key hygiene).",
+    "Client-side persistence infrastructure added via a StorageClient abstraction for browser storage.",
+    "User confirmed applying all premium frame polish effects (soft spotlight glow, stronger drop shadow, smooth fade-in on photo load, subtle sparkles near frame edges) to the framed photo on both MessageScreen1 and MessageScreen2 (no other visual changes requested).",
+    "Build/deploy infrastructure expanded with a build-template workspace (Dockerfile, deploy.sh, icp.yaml, canister yamls) to standardize ICP build/deployment.",
+    "Build template includes asset tooling scripts (resize-images, prune-unused-images) to manage/optimize frontend image assets."
+  ],
+  "known_issues": [
+    "Frontend screen progression and balloon popping are handled via local React state; the provided backend/React Query hooks (useGetState/useNextScreen/usePopBalloon) are not wired into the current screen components, so backend persistence/sync is likely unused.",
+    "Two different frontend index.css contents appear in the codebase (birthday-theme vs generic design-token variables), suggesting a potential file conflict/overwrite risk and inconsistent theming depending on which file is actually used.",
+    "Motoko backend stores a single global AppState for the entire canister (not per-caller), and does not use caller-based authorization; all users would share and overwrite the same state.",
+    "Internet Identity login depends on process.env.II_URL; if not configured at build/runtime, login may fail due to missing identityProvider.",
+    "useActor invalidates and refetches all non-actor queries whenever the actor changes, which may be more aggressive than necessary and can cause redundant refetches.",
+    "Build/deploy pipeline is failing with a recurring platform configuration error (Caffeine build system), blocking delivery despite code/design changes being ready.",
+    "User confirms a font flash on initial load: text renders in a plain/default font briefly, then switches to the intended styled font (FOUT).",
+    "User wants the site to use the earlier/previous font style; current typography appears to have changed from the intended decorative font.",
+    "Royal golden framed photo styling/component appears missing/removed on MessageScreen2 per user screenshot; needs restoration to match prior premium frame presentation.",
+    "Next/continue button is functioning but not visible (UI visibility/styling issue), preventing users from seeing where to click to advance pages."
+  ],
+  "isFixRequest": true,
+  "gameProjectType": "none",
+  "projectName": "Interactive Birthday Webpage for Aradhya",
+  "clarification_mode": "pro",
+  "clarification_rounds": 3
+}

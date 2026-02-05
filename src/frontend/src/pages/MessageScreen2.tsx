@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import FramedPhoto from '@/components/FramedPhoto';
+import PrimaryCtaButton from '@/components/PrimaryCtaButton';
 
 interface MessageScreen2Props {
   onNext: () => void;
@@ -21,7 +22,7 @@ export default function MessageScreen2({ onNext }: MessageScreen2Props) {
 
       <div className="max-w-2xl w-full mt-16 relative z-10">
         <div className="text-center mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-birthday-purple mb-2 drop-shadow-md">
+          <h2 className="text-3xl md:text-4xl font-display text-birthday-purple mb-2 drop-shadow-md">
             A Special Message
           </h2>
           {!isOpen && (
@@ -35,7 +36,15 @@ export default function MessageScreen2({ onNext }: MessageScreen2Props) {
           }`}
           onClick={() => setIsOpen(true)}
         >
-          <div className={`space-y-4 transition-all duration-500 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
+          <div className={`space-y-6 transition-all duration-500 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
+            <div className="flex justify-center mb-6">
+              <FramedPhoto 
+                src="/assets/IMG-20260205-WA0000.jpg" 
+                alt="Special memory"
+                className="animate-fade-in"
+              />
+            </div>
+            
             <div className="flex justify-center mb-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-5xl drop-shadow-lg">🎈</div>
@@ -57,13 +66,13 @@ export default function MessageScreen2({ onNext }: MessageScreen2Props) {
 
         {isOpen && (
           <div className="flex justify-center mt-8 animate-fade-in">
-            <Button 
+            <PrimaryCtaButton 
               onClick={onNext}
-              size="lg"
-              className="bg-birthday-purple hover:bg-birthday-purple/90 text-white text-xl px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-white/30"
+              variant="purple"
+              className="text-xl px-8 py-6"
             >
               Next <ArrowRight className="ml-2 h-6 w-6" />
-            </Button>
+            </PrimaryCtaButton>
           </div>
         )}
       </div>

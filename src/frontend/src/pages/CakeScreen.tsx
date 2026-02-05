@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
 import Confetti from '@/components/Confetti';
+import PrimaryCtaButton from '@/components/PrimaryCtaButton';
 
 interface CakeScreenProps {
   onNext: () => void;
@@ -26,7 +26,7 @@ export default function CakeScreen({ onNext }: CakeScreenProps) {
       />
 
       <div className="max-w-2xl w-full bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-12 space-y-8 text-center mt-16 relative z-10 border border-white/50">
-        <h1 className="text-4xl md:text-5xl font-bold text-birthday-purple drop-shadow-md">
+        <h1 className="text-4xl md:text-5xl font-display text-birthday-purple drop-shadow-md">
           Happy Birthday, Aradhya!
         </h1>
 
@@ -41,13 +41,13 @@ export default function CakeScreen({ onNext }: CakeScreenProps) {
           </div>
         </div>
 
-        <Button 
+        <PrimaryCtaButton 
           onClick={onNext}
-          size="lg"
-          className="bg-birthday-purple hover:bg-birthday-purple/90 text-white text-xl px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-white/30"
+          variant="purple"
+          className="text-xl px-8 py-6"
         >
           Pop the Balloons →
-        </Button>
+        </PrimaryCtaButton>
       </div>
     </div>
   );

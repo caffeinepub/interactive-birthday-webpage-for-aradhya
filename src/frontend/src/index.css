@@ -4,64 +4,70 @@
 
 @layer base {
   :root {
-    /* Birthday theme colors in OKLCH */
-    --birthday-pink: oklch(0.75 0.15 350);
-    --birthday-purple: oklch(0.65 0.18 300);
-    --birthday-light-pink: oklch(0.92 0.08 350);
-    --birthday-light-purple: oklch(0.88 0.10 300);
-    
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.15 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.15 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.15 0 0);
-    --primary: oklch(0.75 0.15 350);
-    --primary-foreground: oklch(0.98 0 0);
-    --secondary: oklch(0.65 0.18 300);
-    --secondary-foreground: oklch(0.98 0 0);
-    --muted: oklch(0.96 0.01 286);
-    --muted-foreground: oklch(0.45 0.01 286);
-    --accent: oklch(0.92 0.08 350);
-    --accent-foreground: oklch(0.15 0 0);
-    --destructive: oklch(0.58 0.22 25);
-    --destructive-foreground: oklch(0.98 0 0);
-    --border: oklch(0.90 0.01 286);
-    --input: oklch(0.90 0.01 286);
-    --ring: oklch(0.75 0.15 350);
+    --background: oklch(100% 0 0);
+    --foreground: oklch(15% 0 0);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(15% 0 0);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(15% 0 0);
+    --primary: oklch(55% 0.15 30);
+    --primary-foreground: oklch(100% 0 0);
+    --secondary: oklch(95% 0.02 30);
+    --secondary-foreground: oklch(15% 0 0);
+    --muted: oklch(95% 0.02 30);
+    --muted-foreground: oklch(45% 0.02 30);
+    --accent: oklch(95% 0.02 30);
+    --accent-foreground: oklch(15% 0 0);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(100% 0 0);
+    --border: oklch(90% 0.02 30);
+    --input: oklch(90% 0.02 30);
+    --ring: oklch(55% 0.15 30);
     --radius: 0.5rem;
-    --chart-1: oklch(0.75 0.15 350);
-    --chart-2: oklch(0.65 0.18 300);
-    --chart-3: oklch(0.70 0.12 30);
-    --chart-4: oklch(0.68 0.14 200);
-    --chart-5: oklch(0.72 0.10 150);
+    --chart-1: oklch(60% 0.15 30);
+    --chart-2: oklch(70% 0.12 60);
+    --chart-3: oklch(65% 0.10 120);
+    --chart-4: oklch(75% 0.08 180);
+    --chart-5: oklch(70% 0.10 240);
+    
+    /* Birthday theme colors */
+    --birthday-pink: oklch(70% 0.18 350);
+    --birthday-purple: oklch(55% 0.15 300);
+    --birthday-light-pink: oklch(90% 0.08 350);
+    --birthday-light-purple: oklch(85% 0.10 300);
   }
 
   .dark {
-    --background: oklch(0.15 0.01 286);
-    --foreground: oklch(0.98 0 0);
-    --card: oklch(0.15 0.01 286);
-    --card-foreground: oklch(0.98 0 0);
-    --popover: oklch(0.15 0.01 286);
-    --popover-foreground: oklch(0.98 0 0);
-    --primary: oklch(0.75 0.15 350);
-    --primary-foreground: oklch(0.15 0 0);
-    --secondary: oklch(0.65 0.18 300);
-    --secondary-foreground: oklch(0.98 0 0);
-    --muted: oklch(0.25 0.01 286);
-    --muted-foreground: oklch(0.65 0.01 286);
-    --accent: oklch(0.25 0.01 286);
-    --accent-foreground: oklch(0.98 0 0);
-    --destructive: oklch(0.58 0.22 25);
-    --destructive-foreground: oklch(0.98 0 0);
-    --border: oklch(0.25 0.01 286);
-    --input: oklch(0.25 0.01 286);
-    --ring: oklch(0.75 0.15 350);
-    --chart-1: oklch(0.75 0.15 350);
-    --chart-2: oklch(0.65 0.18 300);
-    --chart-3: oklch(0.70 0.12 30);
-    --chart-4: oklch(0.68 0.14 200);
-    --chart-5: oklch(0.72 0.10 150);
+    --background: oklch(15% 0.02 30);
+    --foreground: oklch(98% 0 0);
+    --card: oklch(15% 0.02 30);
+    --card-foreground: oklch(98% 0 0);
+    --popover: oklch(15% 0.02 30);
+    --popover-foreground: oklch(98% 0 0);
+    --primary: oklch(65% 0.15 30);
+    --primary-foreground: oklch(15% 0 0);
+    --secondary: oklch(25% 0.02 30);
+    --secondary-foreground: oklch(98% 0 0);
+    --muted: oklch(25% 0.02 30);
+    --muted-foreground: oklch(65% 0.02 30);
+    --accent: oklch(25% 0.02 30);
+    --accent-foreground: oklch(98% 0 0);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(98% 0 0);
+    --border: oklch(25% 0.02 30);
+    --input: oklch(25% 0.02 30);
+    --ring: oklch(65% 0.15 30);
+    --chart-1: oklch(70% 0.15 30);
+    --chart-2: oklch(75% 0.12 60);
+    --chart-3: oklch(70% 0.10 120);
+    --chart-4: oklch(80% 0.08 180);
+    --chart-5: oklch(75% 0.10 240);
+    
+    /* Birthday theme colors for dark mode */
+    --birthday-pink: oklch(75% 0.18 350);
+    --birthday-purple: oklch(65% 0.15 300);
+    --birthday-light-pink: oklch(85% 0.08 350);
+    --birthday-light-purple: oklch(80% 0.10 300);
   }
 }
 
@@ -69,141 +75,284 @@
   * {
     @apply border-border;
   }
+  html {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Nunito', 'Comic Sans MS', cursive, sans-serif;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
   }
 }
 
 @layer utilities {
-  .text-birthday-pink {
-    color: var(--birthday-pink);
-  }
-  .text-birthday-purple {
-    color: var(--birthday-purple);
-  }
-  .bg-birthday-pink {
-    background-color: var(--birthday-pink);
-  }
-  .bg-birthday-purple {
-    background-color: var(--birthday-purple);
-  }
-  .border-birthday-pink {
-    border-color: var(--birthday-pink);
-  }
-  .border-birthday-purple {
-    border-color: var(--birthday-purple);
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
   }
   
-  /* Premium gradient utilities */
-  .bg-gradient-radial {
-    background: radial-gradient(circle, var(--tw-gradient-stops));
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 }
 
-/* Premium custom animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+/* Royal gold frame styling with enhanced premium effects */
+.royal-frame {
+  position: relative;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, 
+    oklch(95% 0.08 60) 0%,
+    oklch(98% 0.04 50) 50%,
+    oklch(95% 0.08 60) 100%
+  );
+  border-radius: 1rem;
+  box-shadow: 
+    0 10px 40px -10px oklch(50% 0.15 50 / 0.4),
+    0 0 0 3px oklch(70% 0.15 50),
+    0 0 0 6px oklch(85% 0.10 50),
+    inset 0 2px 4px oklch(100% 0 0 / 0.3);
 }
 
-@keyframes pop {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+.royal-frame::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(circle at 50% 0%, 
+    oklch(85% 0.15 50 / 0.6) 0%,
+    transparent 70%
+  );
+  border-radius: 1.2rem;
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0.8;
 }
 
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-100vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
+.royal-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    oklch(100% 0 0 / 0.1) 0%,
+    transparent 50%,
+    oklch(50% 0.15 50 / 0.05) 100%
+  );
+  border-radius: 1rem;
+  pointer-events: none;
 }
 
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
+.royal-frame img {
+  position: relative;
+  z-index: 1;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px oklch(30% 0.05 50 / 0.2);
+  animation: imageReveal 0.8s ease-out;
 }
 
-@keyframes pulse-gentle {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes fade-in {
+@keyframes imageReveal {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+/* Corner sparkles positioning */
+.corner-sparkle {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.7;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.animate-pop {
-  animation: pop 0.3s ease-out forwards;
+.corner-sparkle:nth-child(1) {
+  top: -0.5rem;
+  left: -0.5rem;
 }
 
-.animate-confetti-fall {
-  animation: confetti-fall linear forwards;
+.corner-sparkle:nth-child(2) {
+  top: -0.5rem;
+  right: -0.5rem;
+  animation-delay: 0.5s;
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
+.corner-sparkle:nth-child(3) {
+  bottom: -0.5rem;
+  left: -0.5rem;
+  animation-delay: 1s;
 }
 
-.animate-pulse-gentle {
-  animation: pulse-gentle 2s ease-in-out infinite;
+.corner-sparkle:nth-child(4) {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  animation-delay: 1.5s;
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(180deg);
+  }
 }
 
-/* Enhanced smooth transitions with premium timing */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+/* FramedPhoto component styles */
+.framed-photo-container {
+  display: inline-block;
+  max-width: 100%;
 }
 
-.duration-400 {
-  transition-duration: 400ms;
+.framed-photo-wrapper {
+  position: relative;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, 
+    oklch(95% 0.08 60) 0%,
+    oklch(98% 0.04 50) 50%,
+    oklch(95% 0.08 60) 100%
+  );
+  border-radius: 1rem;
+  box-shadow: 
+    0 10px 40px -10px oklch(50% 0.15 50 / 0.4),
+    0 0 0 3px oklch(70% 0.15 50),
+    0 0 0 6px oklch(85% 0.10 50),
+    inset 0 2px 4px oklch(100% 0 0 / 0.3);
 }
 
-/* Premium shadow effects */
-.shadow-3xl {
-  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+.framed-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(circle at 50% 0%, 
+    oklch(85% 0.15 50 / 0.6) 0%,
+    transparent 70%
+  );
+  border-radius: 1.2rem;
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0.8;
 }
 
-.drop-shadow-2xl {
-  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
+.framed-photo-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    oklch(100% 0 0 / 0.1) 0%,
+    transparent 50%,
+    oklch(50% 0.15 50 / 0.05) 100%
+  );
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+.framed-photo-inner {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: oklch(95% 0.02 0);
+}
+
+.framed-photo-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    oklch(90% 0.02 0) 0%, 
+    oklch(95% 0.01 0) 50%, 
+    oklch(90% 0.02 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.framed-photo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.framed-photo-image.loaded {
+  opacity: 1;
+  animation: imageReveal 0.8s ease-out;
+}
+
+.framed-photo-sparkle {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  background-image: url('/assets/generated/stars-sparkles-transparent.dim_200x200.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.framed-photo-sparkle-1 {
+  top: -0.5rem;
+  left: -0.5rem;
+}
+
+.framed-photo-sparkle-2 {
+  top: -0.5rem;
+  right: -0.5rem;
+  animation-delay: 0.5s;
+}
+
+.framed-photo-sparkle-3 {
+  bottom: -0.5rem;
+  left: -0.5rem;
+  animation-delay: 1s;
+}
+
+.framed-photo-sparkle-4 {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  animation-delay: 1.5s;
 }

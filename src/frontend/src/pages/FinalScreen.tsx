@@ -45,7 +45,7 @@ export default function FinalScreen({ onRestart }: FinalScreenProps) {
       <div className="max-w-3xl w-full bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-12 space-y-8 text-center relative z-10 border border-white/50">
         <div className="space-y-4">
           <div className="text-7xl animate-bounce drop-shadow-2xl">🎉</div>
-          <h1 className="text-4xl md:text-5xl font-bold text-birthday-purple drop-shadow-md">
+          <h1 className="text-4xl md:text-5xl font-display text-birthday-purple drop-shadow-md">
             Happy 15th Birthday, Aradhya!
           </h1>
           <p className="text-xl md:text-2xl text-birthday-pink font-semibold drop-shadow-sm">
@@ -86,7 +86,7 @@ export default function FinalScreen({ onRestart }: FinalScreenProps) {
 
         <footer className="pt-8 border-t border-birthday-pink/20">
           <p className="text-sm text-gray-600">
-            © 2025. Built with <Heart className="inline h-4 w-4 text-birthday-pink fill-current" /> using{' '}
+            © 2026. Built with <Heart className="inline h-4 w-4 text-birthday-pink fill-current" /> using{' '}
             <a 
               href="https://caffeine.ai" 
               target="_blank" 
