@@ -1,117 +1,65 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Restore typography, theme variables, royal photo frame, and visible navigation CTAs",
+  "title": "Responsive fixes for MessageScreen1/2 FramedPhoto overflow (mobile/tablet/laptop)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Restore the earlier typography globally and ensure it loads from first paint without a visible flash of a default/system font.",
+      "summary": "Prevent FramedPhoto overflow on MessageScreen1/2 and keep the message card layout centered and balanced across phone/tablet/laptop.",
       "acceptanceCriteria": [
-        "On a hard refresh (desktop + mobile), headings and body text render in the intended (earlier) font immediately without a visible switch from a default font.",
-        "The earlier font style is applied consistently across all screens (loading, intro, cake, balloons, message screens, note, final)."
+        "On a 320px-wide viewport, MessageScreen1 and MessageScreen2 display without horizontal scrolling.",
+        "The framed photo (FramedPhoto component) always fits within the message card container (no clipping outside the rounded card, no overlapping the title/banner).",
+        "FramedPhoto scales down on small screens and scales up appropriately on larger screens (tablet/laptop) without becoming blurry or stretched.",
+        "The message card content (photo + text/balloons + CTA) remains centered and readable across common breakpoints (phone/tablet/laptop)."
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
+          "path": "frontend/src/pages/MessageScreen1.tsx",
           "operation": "modify",
-          "description": "Load the intended (earlier) font(s) at document level (including preconnect/preload where appropriate) so font resources begin loading before React mounts, minimizing any flash of default typography."
+          "description": "Adjust layout classes to be mobile-safe: reduce outer padding on small screens, make the card use responsive padding, add rounded overflow protection on the card so decorative elements never break the card boundary, and ensure the FramedPhoto container is constrained and centered without forcing a fixed width."
         },
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/MessageScreen2.tsx",
           "operation": "modify",
-          "description": "Set global base typography (html/body + headings) to use the restored font stack, and ensure Tailwind base styles apply the font consistently across all screens."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Align Tailwind typography utilities with the restored font family (e.g., default sans/serif mappings) so utility usage stays consistent with the global type across all pages."
+          "description": "Adjust layout classes to be mobile-safe: reduce outer padding on small screens, make the card use responsive padding, add rounded overflow protection on the card so decorative elements never break the card boundary, and ensure the FramedPhoto container is constrained and centered without forcing a fixed width."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Fix invisible progression/navigation CTAs by standardizing visible button styling and ensuring sufficient contrast across screens and interaction states.",
+      "summary": "Make FramedPhoto internally responsive (remove fixed 300×300 sizing) while preserving the gold frame, sparkle effects, and load/error visuals.",
       "acceptanceCriteria": [
-        "On IntroScreen, the primary CTA button is clearly visible (background + label + icon) and not transparent/invisible.",
-        "On MessageScreen1 and MessageScreen2, the “Next” button is clearly visible once the card is opened.",
-        "On CakeScreen and other screens with CTA buttons, buttons remain visible with sufficient contrast in both normal and hover/active/focus states.",
-        "No button is rendered with fully transparent background/text due to missing theme CSS variables or conflicting global styles."
+        "FramedPhoto uses a responsive square size (e.g., via CSS clamp/aspect-ratio) that never exceeds its parent width.",
+        "The frame padding and sparkle positions remain visually correct at small sizes (phone) and larger sizes (tablet/laptop).",
+        "The image remains square-cropped (object-fit: cover) and does not distort.",
+        "No regression to loading skeleton/error state visuals."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/PrimaryCtaButton.tsx",
-          "operation": "create",
-          "description": "Create a small wrapper component around the shadcn-ui Button to provide a consistent, high-contrast primary CTA style (including hover/active/focus ring) and prevent accidental transparent/invisible styling. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/IntroScreen.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Replace the current primary CTA usage with the new PrimaryCtaButton so “Start the surprise” remains visible and distinguishable on its background. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/CakeScreen.tsx",
-          "operation": "modify",
-          "description": "Update the “Pop the Balloons →” CTA to use PrimaryCtaButton (or consistent shared CTA styling) to ensure it renders visibly with correct contrast and interaction states. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/MessageScreen1.tsx",
-          "operation": "modify",
-          "description": "Update the conditional “Next” CTA (shown after opening the card) to use PrimaryCtaButton so it is clearly visible and consistent. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/MessageScreen2.tsx",
-          "operation": "modify",
-          "description": "Update the conditional “Next” CTA (shown after opening the card) to use PrimaryCtaButton so it is clearly visible and consistent. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/HandwrittenNoteScreen.tsx",
-          "operation": "modify",
-          "description": "Update the “Continue” CTA to use PrimaryCtaButton (or align with the shared CTA contrast rules) to ensure it stays visible across mobile/desktop and interaction states. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/FinalScreen.tsx",
-          "operation": "modify",
-          "description": "Ensure the final screen restart button remains visible and accessible (outline/filled states) by aligning it with the standardized button contrast rules (may use PrimaryCtaButton in outline mode or refine existing classes). Verify the component's usage instructions before implementing."
+          "description": "Update the FramedPhoto CSS rules to remove the fixed 300px width/height on .framed-photo-inner and replace with responsive sizing (using aspect-ratio and a clamped width that respects parent max-width). Also make frame padding/sparkle size/offset responsive so sparkles remain correctly positioned at different sizes, while preserving existing skeleton/error and premium gold frame effects."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Restore the premium royal-golden framed photo styling on MessageScreen2.",
+      "summary": "Tune MessageScreen1/2 card spacing and CTA sizing to avoid mobile overflow while preserving theme and animations.",
       "acceptanceCriteria": [
-        "On MessageScreen2, the displayed photo is wrapped in the royal gold frame styling (including the decorative border/shadow effects) rather than a plain/unframed presentation.",
-        "The frame renders correctly on mobile and desktop without layout shift or clipping."
+        "On small phones, the card’s inner padding does not cause content to overflow vertically/horizontally; content wraps naturally.",
+        "Tap-to-open interaction still works; closed state remains compact and open state reveals content smoothly.",
+        "The 'Next' CTA remains fully visible and tappable without overlapping other elements at common viewport heights."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/FramedPhoto.tsx",
+          "path": "frontend/src/pages/MessageScreen1.tsx",
           "operation": "modify",
-          "description": "Refactor FramedPhoto to render using the existing royal gold frame styling (e.g., the global royal frame class and decorative sparkle elements) so MessageScreen2 shows the premium framed presentation."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add/restore the necessary frame-related CSS classes used by FramedPhoto (or map FramedPhoto’s class names to the existing royal-frame styles) to ensure the golden frame, border, glow, and sparkles render correctly without clipping on mobile/desktop."
+          "description": "Refine spacing within the open card content (responsive spacing between photo/text) and make the 'Next' CTA sizing/spacing responsive (font size, padding, and optional full-width on small screens) so it stays visible and tappable on common phone heights while keeping existing animations and interactions."
         },
         {
           "path": "frontend/src/pages/MessageScreen2.tsx",
           "operation": "modify",
-          "description": "Confirm MessageScreen2 uses the FramedPhoto presentation that applies the royal golden frame styling (adjust props/classes only as needed to match the expected premium look)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Define birthday theme CSS variables used by Tailwind theme utility classes so bg-birthday-* and text-birthday-* render correctly everywhere.",
-      "acceptanceCriteria": [
-        "Theme utility classes (bg-birthday-pink, bg-birthday-purple, text-birthday-pink, text-birthday-purple) resolve to actual colors at runtime (no transparent/invalid values).",
-        "Primary CTA buttons that rely on bg-birthday-* colors render with the intended filled backgrounds on all screens."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Define the required :root theme variables (e.g., --birthday-pink, --birthday-purple, --birthday-light-pink, --birthday-light-purple) in the active global stylesheet and ensure they are available across all screens and states."
+          "description": "Refine spacing within the open card content (responsive spacing between photo/balloons/text) and make the 'Next' CTA sizing/spacing responsive (font size, padding, and optional full-width on small screens) so it stays visible and tappable on common phone heights while keeping existing animations and interactions."
         }
       ]
     }

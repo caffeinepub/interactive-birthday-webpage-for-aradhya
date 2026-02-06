@@ -1,95 +1,59 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T14:55:47.257Z",
+  "generatedAt": "2026-02-05T15:09:39.738Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 4,
+    "total": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Restore the earlier (previous) site typography across all screens and ensure it is applied consistently from the first paint (no brief flash of default/system font).",
+        "summary": "Fix the responsive layout on MessageScreen1 and MessageScreen2 so the FramedPhoto never overflows or breaks the card layout on small phones, while still looking balanced on tablet and laptop.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js"
+          "frontend/src/pages/MessageScreen1.tsx",
+          "frontend/src/pages/MessageScreen2.tsx"
         ],
         "matchedFiles": [
-          "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js"
+          "frontend/src/pages/MessageScreen1.tsx",
+          "frontend/src/pages/MessageScreen2.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Fix the invisible navigation button issue so all primary progression buttons (e.g., “Start the surprise”, “Pop the Balloons →”, “Next”) are visually visible and clearly distinguishable on their backgrounds while remaining clickable.",
-        "status": "implemented",
+        "summary": "Update FramedPhoto styling so its internal dimensions are responsive (remove fixed 300x300 behavior) while preserving the existing premium gold frame and sparkle effects.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/PrimaryCtaButton.tsx",
-          "frontend/src/pages/IntroScreen.tsx",
-          "frontend/src/pages/CakeScreen.tsx",
-          "frontend/src/pages/MessageScreen1.tsx",
-          "frontend/src/pages/MessageScreen2.tsx",
-          "frontend/src/pages/HandwrittenNoteScreen.tsx",
-          "frontend/src/pages/FinalScreen.tsx"
+          "frontend/src/index.css"
         ],
-        "matchedFiles": [
-          "frontend/src/components/PrimaryCtaButton.tsx",
-          "frontend/src/pages/IntroScreen.tsx",
-          "frontend/src/pages/CakeScreen.tsx",
-          "frontend/src/pages/MessageScreen1.tsx",
-          "frontend/src/pages/MessageScreen2.tsx",
-          "frontend/src/pages/HandwrittenNoteScreen.tsx",
-          "frontend/src/pages/FinalScreen.tsx"
-        ]
+        "matchedFiles": []
       },
       {
         "id": "REQ-3",
-        "summary": "Restore the royal golden framed photo presentation on MessageScreen2 so the photo appears with the premium royal-gold frame styling as before (matching the expected “royal golden frame” look).",
+        "summary": "Adjust MessageScreen1 and MessageScreen2 spacing/padding to be mobile-safe (especially within the card) while maintaining the current visual theme and animations.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/FramedPhoto.tsx",
-          "frontend/src/index.css",
+          "frontend/src/pages/MessageScreen1.tsx",
           "frontend/src/pages/MessageScreen2.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
+          "frontend/src/pages/MessageScreen1.tsx",
           "frontend/src/pages/MessageScreen2.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Ensure the birthday theme CSS variables used by Tailwind utility classes (e.g., --birthday-pink, --birthday-purple, etc.) are defined in the active global stylesheet so theme-based classes (bg-birthday-*, text-birthday-*) render correctly on every screen.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
-    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/src/components/PrimaryCtaButton.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/CakeScreen.tsx",
-    "frontend/src/pages/FinalScreen.tsx",
-    "frontend/src/pages/HandwrittenNoteScreen.tsx",
-    "frontend/src/pages/IntroScreen.tsx",
     "frontend/src/pages/MessageScreen1.tsx",
     "frontend/src/pages/MessageScreen2.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

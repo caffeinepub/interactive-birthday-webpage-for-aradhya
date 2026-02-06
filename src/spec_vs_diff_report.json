@@ -1,38 +1,33 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T14:55:47.218Z",
-  "summary": "Diff implements global typography (Quicksand/Pacifico) with font preloading to avoid flash, defines birthday theme CSS variables, introduces a PrimaryCtaButton wrapper to ensure CTA visibility, and restores/implements royal gold framed photo styling via global .royal-frame styles and use of FramedPhoto on MessageScreen2. Some additional visual/behavioral enhancements appear beyond the requested scope (e.g., extra decorative effects and content/animation changes on non-target areas).",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-05T15:09:39.736Z",
+  "summary": "Responsive padding/spacing updates were made to MessageScreen1 and MessageScreen2, but the diff does not show any changes to FramedPhoto itself (so the required removal of fixed 300x300 behavior and responsive internal sizing is not evidenced). The diff also appears to change user-facing message copy, which was not requested and conflicts with the constraint to keep interactions/flow unchanged aside from layout/styling fixes.",
+  "missing_requirements": [
     {
-      "description": "Added/modified celebratory floating hearts animation and delayed poetic message reveal behavior on FinalScreen, which was not requested (request focused on typography, button visibility, royal frame, and CSS variables).",
-      "reason": "FinalScreen changes include new heart spawning logic and additional animated/message behaviors not tied to the stated requirements.",
+      "id": "REQ-2",
+      "requirement": "Update FramedPhoto styling so its internal dimensions are responsive (remove fixed 300x300 behavior) while preserving the existing premium gold frame and sparkle effects.",
+      "reason": "No changes to the FramedPhoto component or its styling are included in the diff summary; only MessageScreen1/2 were modified.",
       "evidence": [
-        "frontend/src/pages/FinalScreen.tsx"
-      ]
-    },
-    {
-      "description": "Added extensive extra decorative sparkle/glow visuals on HandwrittenNoteScreen beyond fixing typography/buttons/theme variables.",
-      "reason": "Diff shows new decorative elements and premium frame effects unrelated to the specified fixes.",
-      "evidence": [
-        "frontend/src/pages/HandwrittenNoteScreen.tsx"
+        "frontend/src/pages/MessageScreen1.tsx",
+        "frontend/src/pages/MessageScreen2.tsx"
       ]
     }
   ],
-  "confidence": 0.62,
+  "hallucinated_features": [
+    {
+      "description": "Changed/introduced user-facing message content (e.g., added/modified birthday message paragraphs and emojis) on MessageScreen1/MessageScreen2.",
+      "reason": "BuildRequest scope is limited to responsive layout/styling fixes; changing message copy is not requested and may violate the constraint to keep the existing flow/interactions unchanged aside from responsive layout/styling.",
+      "evidence": [
+        "frontend/src/pages/MessageScreen1.tsx",
+        "frontend/src/pages/MessageScreen2.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
   "changed_files": [
-    "frontend-file-summaries.txt",
-    "frontend/index.html",
-    "frontend/src/components/PrimaryCtaButton.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/CakeScreen.tsx",
-    "frontend/src/pages/FinalScreen.tsx",
-    "frontend/src/pages/HandwrittenNoteScreen.tsx",
-    "frontend/src/pages/IntroScreen.tsx",
     "frontend/src/pages/MessageScreen1.tsx",
     "frontend/src/pages/MessageScreen2.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

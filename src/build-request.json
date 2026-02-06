@@ -1,104 +1,78 @@
 {
   "kind": "build_request",
-  "title": "Restore previous typography, royal golden photo frame, and fix invisible navigation buttons",
+  "title": "Fix mobile/tablet/laptop responsive layout (FramedPhoto overflow on message screens)",
   "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Restore the earlier (previous) site typography across all screens and ensure it is applied consistently from the first paint (no brief flash of default/system font).",
+      "text": "Fix the responsive layout on MessageScreen1 and MessageScreen2 so the FramedPhoto never overflows or breaks the card layout on small phones, while still looking balanced on tablet and laptop.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10",
-          "msg-14"
+          "msg-1"
         ],
         "quotes": [
-          "I want earlier type",
-          "First the font is normal",
-          "Not previous type"
+          "Fix it it's not proper in phone",
+          "Yes build it properly working in phone tab laptop etc"
         ]
       },
       "acceptanceCriteria": [
-        "On a hard refresh (desktop + mobile), headings and body text render in the intended (earlier) font immediately without a visible switch from a default font.",
-        "The earlier font style is applied consistently across all screens (loading, intro, cake, balloons, message screens, note, final)."
+        "On a 320px-wide viewport, MessageScreen1 and MessageScreen2 display without horizontal scrolling.",
+        "The framed photo (FramedPhoto component) always fits within the message card container (no clipping outside the rounded card, no overlapping the title/banner).",
+        "FramedPhoto scales down on small screens and scales up appropriately on larger screens (tablet/laptop) without becoming blurry or stretched.",
+        "The message card content (photo + text/balloons + CTA) remains centered and readable across common breakpoints (phone/tablet/laptop)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Fix the invisible navigation button issue so all primary progression buttons (e.g., “Start the surprise”, “Pop the Balloons →”, “Next”) are visually visible and clearly distinguishable on their backgrounds while remaining clickable.",
+      "text": "Update FramedPhoto styling so its internal dimensions are responsive (remove fixed 300x300 behavior) while preserving the existing premium gold frame and sparkle effects.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-14"
+          "msg-1"
         ],
         "quotes": [
-          "the button is not visible like which we click for next page it's working but not visible so fix it"
+          "Yes build it properly working in phone tab laptop etc"
         ]
       },
       "acceptanceCriteria": [
-        "On IntroScreen, the primary CTA button is clearly visible (background + label + icon) and not transparent/invisible.",
-        "On MessageScreen1 and MessageScreen2, the “Next” button is clearly visible once the card is opened.",
-        "On CakeScreen and other screens with CTA buttons, buttons remain visible with sufficient contrast in both normal and hover/active/focus states.",
-        "No button is rendered with fully transparent background/text due to missing theme CSS variables or conflicting global styles."
+        "FramedPhoto uses a responsive square size (e.g., via CSS clamp/aspect-ratio) that never exceeds its parent width.",
+        "The frame padding and sparkle positions remain visually correct at small sizes (phone) and larger sizes (tablet/laptop).",
+        "The image remains square-cropped (object-fit: cover) and does not distort.",
+        "No regression to loading skeleton/error state visuals."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Restore the royal golden framed photo presentation on MessageScreen2 so the photo appears with the premium royal-gold frame styling as before (matching the expected “royal golden frame” look).",
+      "text": "Adjust MessageScreen1 and MessageScreen2 spacing/padding to be mobile-safe (especially within the card) while maintaining the current visual theme and animations.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-12",
-          "msg-14"
+          "msg-1"
         ],
         "quotes": [
-          "in 2 Screenshot the royal golden frame removed so restore it"
+          "Fix it it's not proper in phone"
         ]
       },
       "acceptanceCriteria": [
-        "On MessageScreen2, the displayed photo is wrapped in the royal gold frame styling (including the decorative border/shadow effects) rather than a plain/unframed presentation.",
-        "The frame renders correctly on mobile and desktop without layout shift or clipping."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Ensure the birthday theme CSS variables used by Tailwind utility classes (e.g., --birthday-pink, --birthday-purple, etc.) are defined in the active global stylesheet so theme-based classes (bg-birthday-*, text-birthday-*) render correctly on every screen.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-14"
-        ],
-        "quotes": [
-          "the button is not visible... it's working but not visible"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Theme utility classes (bg-birthday-pink, bg-birthday-purple, text-birthday-pink, text-birthday-purple) resolve to actual colors at runtime (no transparent/invalid values).",
-        "Primary CTA buttons that rely on bg-birthday-* colors render with the intended filled backgrounds on all screens."
+        "On small phones, the card’s inner padding does not cause content to overflow vertically/horizontally; content wraps naturally.",
+        "Tap-to-open interaction still works; closed state remains compact and open state reveals content smoothly.",
+        "The 'Next' CTA remains fully visible and tappable without overlapping other elements at common viewport heights."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (shadcn/ui sources); compose/override via props/classes or add new wrapper components instead.",
-    "Do not modify immutable hook/entry paths listed in SYSTEM_CONTEXT.frontend.immutablePaths."
+    "Do not edit files under frontend/src/components/ui (shadcn/ui) or any path listed in frontend.immutablePaths.",
+    "Keep the existing multi-screen flow and interactions unchanged aside from responsive layout/styling fixes.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Do not change the screen flow/sequence or add new screens.",
-    "Do not add new authentication methods or third-party integrations.",
-    "Do not implement the previously mentioned photo-upload feature in this change set unless it is already in progress elsewhere."
+    "Adding new screens or changing the birthday flow logic.",
+    "Implementing photo upload or backend state wiring as part of this task.",
+    "Changing authentication (Internet Identity) behavior."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

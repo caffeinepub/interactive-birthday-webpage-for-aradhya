@@ -2,12 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-restore-the-earlier-previous-site-typography-across-all-screens-and-ensure-it-is-applied-consistently-from-the-first-paint-no-brief-flash-of-default-system-font",
-      "featureTitle": "Restore the earlier (previous) site typography across all screens and ensure it is applied consistently from the first paint (no brief flash of default/system font).",
+      "featureId": "feature-fix-the-responsive-layout-on-messagescreen1-and-messagescreen2-so-the-framedphoto-never-overflows-or-breaks-the-card-layout-on-small-phones-while-still-looking-balanced-on-tablet-and-laptop",
+      "featureTitle": "Fix the responsive layout on MessageScreen1 and MessageScreen2 so the FramedPhoto never overflows or breaks the card layout on small phones, while still looking balanced on tablet and laptop.",
       "files": [
-        "frontend/index.html",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
+        "frontend/src/pages/MessageScreen1.tsx",
+        "frontend/src/pages/MessageScreen2.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -22,14 +21,9 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-fix-the-invisible-navigation-button-issue-so-all-primary-progression-buttons-e-g-start-the-surprise-pop-the-balloons-next-are-visually-visible-and-clearly-distinguishable-on-their-backgrounds-while-remaining-clickable",
-      "featureTitle": "Fix the invisible navigation button issue so all primary progression buttons (e.g., “Start the surprise”, “Pop the Balloons →”, “Next”) are visually visible and clearly distinguishable on their backgrounds while remaining clickable.",
+      "featureId": "feature-adjust-messagescreen1-and-messagescreen2-spacing-padding-to-be-mobile-safe-especially-within-the-card-while-maintaining-the-current-visual-theme-and-animations",
+      "featureTitle": "Adjust MessageScreen1 and MessageScreen2 spacing/padding to be mobile-safe (especially within the card) while maintaining the current visual theme and animations.",
       "files": [
-        "frontend/src/components/PrimaryCtaButton.tsx",
-        "frontend/src/pages/CakeScreen.tsx",
-        "frontend/src/pages/FinalScreen.tsx",
-        "frontend/src/pages/HandwrittenNoteScreen.tsx",
-        "frontend/src/pages/IntroScreen.tsx",
         "frontend/src/pages/MessageScreen1.tsx",
         "frontend/src/pages/MessageScreen2.tsx"
       ],
@@ -41,44 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-restore-the-royal-golden-framed-photo-presentation-on-messagescreen2-so-the-photo-appears-with-the-premium-royal-gold-frame-styling-as-before-matching-the-expected-royal-golden-frame-look",
-      "featureTitle": "Restore the royal golden framed photo presentation on MessageScreen2 so the photo appears with the premium royal-gold frame styling as before (matching the expected “royal golden frame” look).",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/MessageScreen2.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
         "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-birthday-theme-css-variables-used-by-tailwind-utility-classes-e-g-birthday-pink-birthday-purple-etc-are-defined-in-the-active-global-stylesheet-so-theme-based-classes-bg-birthday-text-birthday-render-correctly-on-every-screen",
-      "featureTitle": "Ensure the birthday theme CSS variables used by Tailwind utility classes (e.g., --birthday-pink, --birthday-purple, etc.) are defined in the active global stylesheet so theme-based classes (bg-birthday-*, text-birthday-*) render correctly on every screen.",
-      "files": [
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }

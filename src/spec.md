@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Restore the prior look-and-feel (typography + royal gold framed photo) and fix invisible/transparent navigation buttons by ensuring theme CSS variables and font loading apply correctly from first paint.
+**Goal:** Fix MessageScreen1/MessageScreen2 responsive layout so the FramedPhoto and message card never overflow on small phones while staying balanced on tablet and laptop.
 
 **Planned changes:**
-- Restore the earlier typography across all screens and ensure it is applied immediately on first paint (no flash of default/system font on hard refresh).
-- Fix invisible primary navigation/progression buttons (Intro CTA, “Pop the Balloons →”, “Next”, etc.) by correcting styles/contrast across normal/hover/active/focus states.
-- Restore the “royal golden” framed photo presentation on MessageScreen2 so the photo renders with the premium gold frame styling (border + decorative/shadow effects) on mobile and desktop without clipping.
-- Ensure the birthday theme CSS variables used by theme utility classes (e.g., bg-birthday-*, text-birthday-*) are defined in the active global stylesheet so theme-based colors render reliably on every screen.
+- Update MessageScreen1 and MessageScreen2 layout styles to prevent horizontal scrolling and keep the photo/banner/text/CTA centered and readable across phone/tablet/laptop breakpoints.
+- Refactor the FramedPhoto component styling to use responsive sizing (remove fixed ~300x300 behavior), ensuring it never exceeds its parent width while preserving the existing gold frame and sparkle effects.
+- Adjust card spacing/padding on MessageScreen1 and MessageScreen2 to be mobile-safe so content wraps naturally and the “Next” CTA remains fully visible/tappable in common viewport sizes.
 
-**User-visible outcome:** The app loads with the intended earlier typography immediately, navigation buttons are clearly visible and usable throughout the flow, and MessageScreen2 again displays the photo inside the royal golden frame styling.
+**User-visible outcome:** On phones (including ~320px width), tablets, and laptops, the message screens display cleanly without overflow; the framed photo fits inside the rounded card without overlapping other elements; and the content/CTA remain readable and usable.

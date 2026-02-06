@@ -1,7 +1,29 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 51,
+  "projectStateVersion": 55,
   "summary": "Interactive Birthday Webpage for Aradhya: a React + Tailwind single-page, multi-screen birthday experience (loading → intro → cake/confetti → balloon popping → message cards with framed photo → pre-final loading transition → handwritten-note image screen → final celebration) with polished animations and themed assets. The repo also includes an Internet Computer (Motoko) backend canister and React Query/Internet Identity hooks intended to persist and synchronize app state (current screen and popped balloons) across sessions/identities, although the current UI screen flow primarily uses local React state.",
+  "architectural_notes": [
+    "React SPA with screen-based flow controlled via local component state (no router), using fade transitions between screens.",
+    "UI styling built with TailwindCSS plus custom CSS variables (birthday theme) and custom keyframe animations (float, pop, confetti, fade-in, etc.).",
+    "React Query (@tanstack/react-query) used for data fetching/mutations and for caching an ICP backend actor instance keyed by user identity.",
+    "Internet Identity integration implemented as a React Context Provider wrapping the app; supports login/logout and identity restoration on reload.",
+    "Backend is a Motoko actor exposing query (getState) and shared update calls (nextScreen, popBalloon) with input validation via traps.",
+    "UI primitives extended via shadcn/ui component set with shared utils and ESLint rules to enforce project conventions (e.g., Internet Identity provider usage, query-key hygiene).",
+    "Client-side persistence infrastructure added via a StorageClient abstraction for browser storage.",
+    "User confirmed applying all premium frame polish effects (soft spotlight glow, stronger drop shadow, smooth fade-in on photo load, subtle sparkles near frame edges) to the framed photo on both MessageScreen1 and MessageScreen2 (no other visual changes requested).",
+    "Build/deploy infrastructure expanded with a build-template workspace (Dockerfile, deploy.sh, icp.yaml, canister yamls) to standardize ICP build/deployment.",
+    "Build template includes asset tooling scripts (resize-images, prune-unused-images) to manage/optimize frontend image assets."
+  ],
+  "known_issues": [
+    "Frontend screen progression and balloon popping are handled via local React state; the provided backend/React Query hooks (useGetState/useNextScreen/usePopBalloon) are not wired into the current screen components, so backend persistence/sync is likely unused.",
+    "Two different frontend index.css contents appear in the codebase (birthday-theme vs generic design-token variables), suggesting a potential file conflict/overwrite risk and inconsistent theming depending on which file is actually used.",
+    "Motoko backend stores a single global AppState for the entire canister (not per-caller), and does not use caller-based authorization; all users would share and overwrite the same state.",
+    "Internet Identity login depends on process.env.II_URL; if not configured at build/runtime, login may fail due to missing identityProvider.",
+    "useActor invalidates and refetches all non-actor queries whenever the actor changes, which may be more aggressive than necessary and can cause redundant refetches.",
+    "Build/deploy pipeline is failing with a recurring platform configuration error (Caffeine build system), blocking delivery despite code/design changes being ready.",
+    "Responsive layout issue: framed photo component overflows/breaks message card layout on mobile (needs to work properly across phone/tablet/laptop)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "IF-2",
@@ -278,34 +300,32 @@
       "version": 1
     },
     {
-      "id": "feature-restore-the-earlier-previous-site-typography-across-all-screens-and-ensure-it-is-applied-consistently-from-the-first-paint-no-brief-flash-of-default-system-font",
-      "title": "Restore the earlier (previous) site typography across all screens and ensure it is applied consistently from the first paint (no brief flash of default/system font).",
+      "id": "IF-25",
+      "title": "Preferred typography restored with consistent font loading (reduced FOUT)",
+      "synonyms": [
+        "typography revert",
+        "font preload",
+        "anti-FOUT"
+      ],
+      "description": "Restores the earlier preferred decorative font styling across the site and updates font loading (e.g., CSS/font declarations and HTML preloading) to reduce the initial default-font flash on first load.",
+      "reqIds": [
+        "AR-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-responsive-layout-on-messagescreen1-and-messagescreen2-so-the-framedphoto-never-overflows-or-breaks-the-card-layout-on-small-phones-while-still-looking-balanced-on-tablet-and-laptop",
+      "title": "Fix the responsive layout on MessageScreen1 and MessageScreen2 so the FramedPhoto never overflows or breaks the card layout on small phones, while still looking balanced on tablet and laptop.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-fix-the-invisible-navigation-button-issue-so-all-primary-progression-buttons-e-g-start-the-surprise-pop-the-balloons-next-are-visually-visible-and-clearly-distinguishable-on-their-backgrounds-while-remaining-clickable",
-      "title": "Fix the invisible navigation button issue so all primary progression buttons (e.g., “Start the surprise”, “Pop the Balloons →”, “Next”) are visually visible and clearly distinguishable on their backgrounds while remaining clickable.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-restore-the-royal-golden-framed-photo-presentation-on-messagescreen2-so-the-photo-appears-with-the-premium-royal-gold-frame-styling-as-before-matching-the-expected-royal-golden-frame-look",
-      "title": "Restore the royal golden framed photo presentation on MessageScreen2 so the photo appears with the premium royal-gold frame styling as before (matching the expected “royal golden frame” look).",
+      "id": "feature-adjust-messagescreen1-and-messagescreen2-spacing-padding-to-be-mobile-safe-especially-within-the-card-while-maintaining-the-current-visual-theme-and-animations",
+      "title": "Adjust MessageScreen1 and MessageScreen2 spacing/padding to be mobile-safe (especially within the card) while maintaining the current visual theme and animations.",
       "reqIds": [
         "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-the-birthday-theme-css-variables-used-by-tailwind-utility-classes-e-g-birthday-pink-birthday-purple-etc-are-defined-in-the-active-global-stylesheet-so-theme-based-classes-bg-birthday-text-birthday-render-correctly-on-every-screen",
-      "title": "Ensure the birthday theme CSS variables used by Tailwind utility classes (e.g., --birthday-pink, --birthday-purple, etc.) are defined in the active global stylesheet so theme-based classes (bg-birthday-*, text-birthday-*) render correctly on every screen.",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
@@ -324,49 +344,14 @@
       "status": "pending"
     },
     {
-      "id": "AR-16",
-      "summary": "Revert the site typography to the earlier font style the user preferred and ensure it loads consistently (avoid initial default-font flash).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-17",
-      "summary": "Restore the royal golden framed photo on MessageScreen2 (it appears removed in the user's second screenshot).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-18",
-      "summary": "Fix the invisible Next/continue button (clickable but not visible) so navigation controls are visible across screens.",
-      "reqIds": [],
+      "id": "AR-8",
+      "summary": "Update FramedPhoto styling so its internal dimensions are responsive (remove fixed 300x300 behavior) while preserving the existing premium gold frame and sparkle effects.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
-  "architectural_notes": [
-    "React SPA with screen-based flow controlled via local component state (no router), using fade transitions between screens.",
-    "UI styling built with TailwindCSS plus custom CSS variables (birthday theme) and custom keyframe animations (float, pop, confetti, fade-in, etc.).",
-    "React Query (@tanstack/react-query) used for data fetching/mutations and for caching an ICP backend actor instance keyed by user identity.",
-    "Internet Identity integration implemented as a React Context Provider wrapping the app; supports login/logout and identity restoration on reload.",
-    "Backend is a Motoko actor exposing query (getState) and shared update calls (nextScreen, popBalloon) with input validation via traps.",
-    "UI primitives extended via shadcn/ui component set with shared utils and ESLint rules to enforce project conventions (e.g., Internet Identity provider usage, query-key hygiene).",
-    "Client-side persistence infrastructure added via a StorageClient abstraction for browser storage.",
-    "User confirmed applying all premium frame polish effects (soft spotlight glow, stronger drop shadow, smooth fade-in on photo load, subtle sparkles near frame edges) to the framed photo on both MessageScreen1 and MessageScreen2 (no other visual changes requested).",
-    "Build/deploy infrastructure expanded with a build-template workspace (Dockerfile, deploy.sh, icp.yaml, canister yamls) to standardize ICP build/deployment.",
-    "Build template includes asset tooling scripts (resize-images, prune-unused-images) to manage/optimize frontend image assets."
-  ],
-  "known_issues": [
-    "Frontend screen progression and balloon popping are handled via local React state; the provided backend/React Query hooks (useGetState/useNextScreen/usePopBalloon) are not wired into the current screen components, so backend persistence/sync is likely unused.",
-    "Two different frontend index.css contents appear in the codebase (birthday-theme vs generic design-token variables), suggesting a potential file conflict/overwrite risk and inconsistent theming depending on which file is actually used.",
-    "Motoko backend stores a single global AppState for the entire canister (not per-caller), and does not use caller-based authorization; all users would share and overwrite the same state.",
-    "Internet Identity login depends on process.env.II_URL; if not configured at build/runtime, login may fail due to missing identityProvider.",
-    "useActor invalidates and refetches all non-actor queries whenever the actor changes, which may be more aggressive than necessary and can cause redundant refetches.",
-    "Build/deploy pipeline is failing with a recurring platform configuration error (Caffeine build system), blocking delivery despite code/design changes being ready.",
-    "User confirms a font flash on initial load: text renders in a plain/default font briefly, then switches to the intended styled font (FOUT).",
-    "User wants the site to use the earlier/previous font style; current typography appears to have changed from the intended decorative font.",
-    "Royal golden framed photo styling/component appears missing/removed on MessageScreen2 per user screenshot; needs restoration to match prior premium frame presentation.",
-    "Next/continue button is functioning but not visible (UI visibility/styling issue), preventing users from seeing where to click to advance pages."
-  ],
-  "isFixRequest": true,
   "gameProjectType": "none",
   "projectName": "Interactive Birthday Webpage for Aradhya",
   "clarification_mode": "pro",
